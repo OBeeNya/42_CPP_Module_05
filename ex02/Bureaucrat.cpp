@@ -4,7 +4,7 @@ Bureaucrat::Bureaucrat(void):
 	_name(""),
 	_grade(150)
 {
-	std::cout << "Bureaucrat default constructor called" << std::endl;
+	// std::cout << "Bureaucrat default constructor called" << std::endl;
 	return ;
 }
 
@@ -12,14 +12,14 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src):
 	_name(src.getName()),
 	_grade(src.getGrade())
 {
-	std::cout << "Bureaucrat copy constructor called" << std::endl;
+	// std::cout << "Bureaucrat copy constructor called" << std::endl;
 	return ;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade):
 	_name(name)
 {
-	std::cout << "Bureaucrat full constructor called" << std::endl;
+	// std::cout << "Bureaucrat full constructor called" << std::endl;
 	if (grade < 1)
 		throw (Bureaucrat::GradeTooHighException());
 	else if (grade > 150)
@@ -31,7 +31,7 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade):
 
 Bureaucrat::~Bureaucrat(void)
 {
-	std::cout << "Bureaucrat default destructor called" << std::endl;
+	// std::cout << "Bureaucrat default destructor called" << std::endl;
 	return ;
 }
 
@@ -91,7 +91,7 @@ std::ostream	&operator<<(std::ostream &o, const Bureaucrat &rhs)
 	return (o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << ".");
 }
 
-void	Bureaucrat::signForm(Form *form)
+void	Bureaucrat::signForm(AForm *form)
 {
 	try
 	{
@@ -101,6 +101,20 @@ void	Bureaucrat::signForm(Form *form)
 	catch (std::exception &e)
 	{
 		std::cout << this->_name << " couldn't sign " << form->getName() << \
+		" because " << e.what() << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(const AForm &form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->_name << " couldn't execute " << form.getName() << \
 		" because " << e.what() << std::endl;
 	}
 }

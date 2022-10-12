@@ -42,6 +42,8 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &rhs)
 	else
 	{
 		this->_grade = rhs.getGrade();
+		std::string *s = (std::string *)&this->_name; 
+		*s = rhs.getName();
 		return (*this);
 	}
 }

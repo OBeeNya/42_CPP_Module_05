@@ -1,8 +1,11 @@
-NAME =				larvas
+NAME =				28
 
 SRCS =				main.cpp \
 					Bureaucrat.cpp \
-					Form.cpp
+					AForm.cpp \
+					ShrubberyCreationForm.cpp \
+					RobotomyRequestForm.cpp \
+					PresidentialPardonForm.cpp
 
 OBJS =				${SRCS:.cpp=.o}
 
